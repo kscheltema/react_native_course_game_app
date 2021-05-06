@@ -64,7 +64,7 @@ const StartScreen = (props) => {
       <View style={styles.screen}>
         <Text style={styles.title}>Start a New Game!</Text>
         <Card style={styles.inputCard}>
-          <Text>Select a Number</Text>
+          <Text style={styles.buttonTitle}>Select a Number</Text>
           <Input
             style={styles.input}
             blurOnSubmit
@@ -108,16 +108,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 10,
   },
+  buttonTitle: {
+    fontSize: 16,
+    marginTop: 15,
+  },
   inputCard: {
     width: 300,
     maxWidth: "70%",
     alignItems: "center",
+    justifyContent: "center",
   },
   buttonContainer: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    padding: 15,
+    paddingBottom: 15,
+    paddingHorizontal: 7,
   },
   buttonStart: {
     width: "60%",
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
   },
   buttonSize: {
     width: "40%",
-    paddingTop: 15,
+    paddingTop: 12,
   },
   input: {
     width: 50,
@@ -134,6 +140,7 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     margin: 20,
+    alignItems: "center",
   },
 });
 
