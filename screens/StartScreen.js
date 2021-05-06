@@ -11,6 +11,7 @@ import {
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
 import Input from "../components/Input";
+import NumberContainer from "../components/NumberContainer";
 
 const StartScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -41,7 +42,17 @@ const StartScreen = (props) => {
 
   let confirmedOutput;
   if (confirmed) {
-    confirmedOutput = <Text>Your Selected Number is: {selectedNum}</Text>;
+    confirmedOutput = (
+      <Card style={styles.summaryCard}>
+        <Text>Your Selected Number is: </Text>
+        <View style={styles.buttonStart}>
+          <NumberContainer>{selectedNum}</NumberContainer>
+          <View style={styles.buttonSize}>
+            <Button title="Start Game" color={Colors.accent} />
+          </View>
+        </View>
+      </Card>
+    );
   }
 
   return (
@@ -52,7 +63,7 @@ const StartScreen = (props) => {
     >
       <View style={styles.screen}>
         <Text style={styles.title}>Start a New Game!</Text>
-        <Card style={styles.inputContainer}>
+        <Card style={styles.inputCard}>
           <Text>Select a Number</Text>
           <Input
             style={styles.input}
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 10,
   },
-  inputContainer: {
+  inputCard: {
     width: 300,
     maxWidth: "70%",
     alignItems: "center",
@@ -108,12 +119,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 15,
   },
+  buttonStart: {
+    width: "60%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
   buttonSize: {
     width: "40%",
+    paddingTop: 15,
   },
   input: {
     width: 50,
     textAlign: "center",
+  },
+  summaryCard: {
+    margin: 20,
   },
 });
 
