@@ -13,8 +13,8 @@ const NumberContainer = (props) => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 3.5,
-    borderColor: Colors.primary,
-    backgroundColor: Colors.primary,
+    borderColor: Colors.accent,
+    backgroundColor: Colors.accent,
     padding: 10,
     borderRadius: 10,
     marginVertical: 15,
