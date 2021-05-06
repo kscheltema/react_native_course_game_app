@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Keyboard,
   Button,
+  Alert,
 } from "react-native";
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
@@ -27,7 +28,10 @@ const StartScreen = (props) => {
 
   const confirmInputHandler = () => {
     const chosenNum = parseInt(enteredValue);
-    if (chosenNum === NaN || chosenNum <= 0 || chosenNum > 99) {
+    if (isNaN(chosenNum) || chosenNum <= 0 || chosenNum > 99) {
+      Alert.alert("Invalid Number!", "Your number has to be between 1 and 99", [
+        { text: "Okay", style: "cancel", onPress: resetInputHandler },
+      ]);
       return;
     }
     setConfirmed(true);
