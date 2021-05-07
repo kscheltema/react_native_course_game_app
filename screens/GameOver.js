@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
 import BodyText from "../components/BodyText";
@@ -8,6 +8,7 @@ const GameOver = (props) => {
   return (
     <View style={styles.screen}>
       <BodyText>The Game is Over!</BodyText>
+      <Image style={styles.image} source={require("../assets/final.png")} />
       <Card>
         <View style={styles.button}>
           <Button
@@ -39,10 +40,9 @@ const styles = StyleSheet.create({
   button: {
     marginVertical: "1%",
   },
-  title: {
-    fontSize: 20,
-    marginBottom: 20,
-    fontFamily: "open-sans-bold",
+  image: {
+    width: "80%",
+    height: 300,
   },
 });
 
