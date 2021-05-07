@@ -6,15 +6,15 @@ import Card from "../components/Card";
 const GameOver = (props) => {
   return (
     <View style={styles.screen}>
-      <View style={styles.button}>
-        <Button
-          color={Colors.accent}
-          title="NEW GAME"
-          onPress={props.onRestart}
-        />
-      </View>
+      <Text style={styles.title}>The Game is Over!</Text>
       <Card>
-        <Text style={styles.text}>The Game is Over!</Text>
+        <View style={styles.button}>
+          <Button
+            color={Colors.primary}
+            title="NEW GAME"
+            onPress={props.onRestart}
+          />
+        </View>
         <Text style={styles.text}>Number of Round: </Text>
         <Text style={styles.number}>{props.roundsNum}</Text>
         <Text style={styles.text}>The User Number was:</Text>
@@ -27,9 +27,8 @@ const GameOver = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    paddingBottom: "60%",
+    marginTop: 20,
   },
   text: {
     fontSize: 14,
@@ -42,7 +41,12 @@ const styles = StyleSheet.create({
     color: Colors.accent,
   },
   button: {
-    marginBottom: "6%",
+    marginVertical: "1%",
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 20,
+    fontFamily: "open-sans-bold",
   },
 });
 

@@ -59,7 +59,7 @@ const GameScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Text>Opponents Guess</Text>
+      <Text style={styles.title}>Opponents Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
         <Button
@@ -89,6 +89,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 300,
     maxWidth: "50%",
+  },
+  title: {
+    fontSize: 20,
+    fontFamily: "open-sans-bold",
   },
 });
 
