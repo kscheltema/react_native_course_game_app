@@ -12,6 +12,7 @@ import Colors from "../constants/Colors";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import BodyText from "../components/BodyText";
 
 const StartScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -66,7 +67,7 @@ const StartScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a New Game!</Text>
+        <BodyText>Start a New Game!</BodyText>
         <Card style={styles.inputCard}>
           <Text style={styles.buttonTitle}>Select a Number</Text>
           <Input
@@ -107,11 +108,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: "2%",
     alignItems: "center",
-  },
-  title: {
-    fontSize: 20,
-    marginVertical: 10,
-    fontFamily: "open-sans-bold",
   },
   buttonTitle: {
     fontSize: 16,
