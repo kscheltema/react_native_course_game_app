@@ -8,7 +8,14 @@ const GameOver = (props) => {
   return (
     <View style={styles.screen}>
       <BodyText>The Game is Over!</BodyText>
-      <Image style={styles.image} source={require("../assets/final.png")} />
+      <Card style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/final.png")}
+          resizeMode="cover"
+        />
+      </Card>
+
       <Card>
         <View style={styles.button}>
           <Button
@@ -40,9 +47,17 @@ const styles = StyleSheet.create({
   button: {
     marginVertical: "1%",
   },
-  image: {
+  imageContainer: {
     width: "80%",
-    height: 300,
+    height: "60%",
+    overflow: "hidden",
+    borderRadius: 100,
+    margin: 10,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 100,
   },
 });
 
