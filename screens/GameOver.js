@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Button } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
 import BodyText from "../components/BodyText";
@@ -22,7 +23,8 @@ const GameOver = (props) => {
       <Card>
         <View style={styles.button}>
           <MainButton onPress={props.onRestart}>
-            <Text>NEW GAME</Text>
+            <Icon name="replay" size={20} color="#fff" />
+            <Text>New Game</Text>
           </MainButton>
         </View>
         <Text style={styles.bottomTextContainer}>

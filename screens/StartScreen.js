@@ -8,6 +8,7 @@ import {
   Button,
   Alert,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
 import Input from "../components/Input";
@@ -51,7 +52,7 @@ const StartScreen = (props) => {
           <NumberContainer>{selectedNum}</NumberContainer>
           <View style={styles.mainButtonContainer}>
             <MainButton onPress={() => props.onStart(selectedNum)}>
-              <Text>Start Game</Text>
+              <Icon name="play-arrow" size={24} color="#fff" />
             </MainButton>
           </View>
         </View>

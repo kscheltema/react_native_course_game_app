@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import MainButton from "../components/MainButton";
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
-import Colors from "../constants/Colors";
 import BodyText from "../components/BodyText";
 
 const generateRandomBetween = (min, max, exclude) => {
@@ -63,16 +64,12 @@ const GameScreen = (props) => {
       <BodyText>Opponents Guess</BodyText>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button
-          title="LOWER"
-          onPress={NextGuessHandler.bind(this, "lower")}
-          color={Colors.primary}
-        />
-        <Button
-          title="HIGHER"
-          onPress={NextGuessHandler.bind(this, "higher")}
-          color={Colors.primary}
-        />
+        <MainButton onPress={NextGuessHandler.bind(this, "lower")}>
+          <Icon name="remove" size={24} color="#fff" />
+        </MainButton>
+        <MainButton onPress={NextGuessHandler.bind(this, "higher")}>
+          <Icon name="add" size={24} color="#fff" />
+        </MainButton>
       </Card>
     </View>
   );
