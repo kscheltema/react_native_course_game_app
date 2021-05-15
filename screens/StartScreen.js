@@ -4,10 +4,12 @@ import {
   TouchableWithoutFeedback,
   Text,
   StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
   Keyboard,
+  Dimensions,
   Button,
   Alert,
-  Dimensions,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Colors from "../constants/Colors";
@@ -62,45 +64,51 @@ const StartScreen = (props) => {
   }
 
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={styles.screen}>
-        <BodyText>Start a New Game!</BodyText>
-        <Card style={styles.inputCard}>
-          <Text style={styles.buttonTitle}>Select a Number</Text>
-          <Input
-            style={styles.input}
-            blurOnSubmit
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="number-pad"
-            maxLenght={2}
-            onChangeText={numInputHandler}
-            value={enteredValue}
-          />
-          <View style={styles.buttonContainer}>
-            <View style={styles.buttonSize}>
-              <Button
-                title="Reset"
-                onPress={resetInputHandler}
-                color={Colors.accent}
-              />
-            </View>
-            <View style={styles.buttonSize}>
-              <Button
-                title="Confirm"
-                onPress={confirmInputHandler}
-                color={Colors.primary}
-              />
-            </View>
+    <ScrollView>
+      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={20}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
+        >
+          <View style={styles.screen}>
+            <BodyText>Start a New Game!</BodyText>
+            <Card style={styles.inputCard}>
+              <View style={styles.numberContainer}>
+                <Text style={styles.buttonTitle}>Select a Number</Text>
+                <Input
+                  style={styles.input}
+                  blurOnSubmit
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  keyboardType="number-pad"
+                  maxLenght={2}
+                  onChangeText={numInputHandler}
+                  value={enteredValue}
+                />
+              </View>
+              <View style={styles.buttonContainer}>
+                <View style={styles.buttonSize}>
+                  <Button
+                    title="Reset"
+                    onPress={resetInputHandler}
+                    color={Colors.accent}
+                  />
+                </View>
+                <View style={styles.buttonSize}>
+                  <Button
+                    title="Confirm"
+                    onPress={confirmInputHandler}
+                    color={Colors.primary}
+                  />
+                </View>
+              </View>
+            </Card>
+            {confirmedOutput}
           </View>
-        </Card>
-        {confirmedOutput}
-      </View>
-    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
@@ -113,9 +121,11 @@ const styles = StyleSheet.create({
   buttonTitle: {
     fontSize: 16,
     marginTop: 15,
+    paddingRight: Dimensions.get("screen").height < 400 ? 25 : 0,
   },
   inputCard: {
-    height: Dimensions.get("screen").height > 500 ? 150 : "40%",
+    minHeight: Dimensions.get("screen").height < 400 ? 120 : "40%",
+    maxHeight: "40%",
     width: "80%",
     minWidth: 300,
     maxWidth: "95%",
@@ -143,13 +153,20 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     marginHorizontal: 10,
   },
+  numberContainer: {
+    flexDirection: Dimensions.get("screen").height < 400 ? "row" : "column",
+    alignItems: "center",
+  },
   input: {
     width: 50,
     textAlign: "center",
   },
   summaryCard: {
     margin: Dimensions.get("screen").height > 500 ? 5 : 20,
-    width: "80%",
+    minHeight: 75,
+    maxHeight: "40%",
+    minWidth: 200,
+    maxWidth: "80%",
     alignItems: "center",
   },
 });

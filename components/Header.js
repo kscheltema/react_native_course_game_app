@@ -13,7 +13,7 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   header: {
     width: "100%",
-    height: Dimensions.get("screen").height > 500 ? 55 : 90,
+    height: Dimensions.get("screen").height < 400 ? 55 : "11%",
     paddingTop: 36,
     paddingBottom: 3,
     backgroundColor: Colors.primary,

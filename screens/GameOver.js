@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Dimensions,
+} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Colors from "../constants/Colors";
 import Card from "../components/Card";
@@ -20,17 +27,17 @@ const GameOver = (props) => {
         />
       </Card>
 
-      <Card>
+      <Card style={styles.resultsContainer}>
         <View style={styles.button}>
           <MainButton onPress={props.onRestart}>
             <Icon name="replay" size={20} color="#fff" />
-            <Text>New Game</Text>
+            <Text style={styles.buttonText}> Replay</Text>
           </MainButton>
         </View>
         <Text style={styles.bottomTextContainer}>
-          The number of rounds was -
+          Your phone needed -
           <Text style={styles.number}>{props.roundsNum}</Text>
-          <Text>- The number that the user played with was -</Text>
+          <Text>- rounds to guess the number - </Text>
           <Text style={styles.number}>{props.userNum}</Text>
           <Text>-</Text>
         </Text>
@@ -45,6 +52,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  resultsContainer: {
+    height: Dimensions.get("window").height / 3.5,
+    justifyContent: "center",
+  },
   number: {
     fontSize: 16,
     textAlign: "center",
@@ -53,11 +64,15 @@ const styles = StyleSheet.create({
     fontFamily: "open-sans-bold",
   },
   button: {
-    marginVertical: "1%",
+    marginVertical: Dimensions.get("screen").height > 500 ? 1 : "1%",
+    paddingBottom: 15,
+  },
+  buttonText: {
+    fontSize: 18,
   },
   imageContainer: {
-    width: "80%",
-    height: "60%",
+    width: "75%",
+    height: "50%",
     overflow: "hidden",
     borderRadius: 80,
     margin: 10,
@@ -70,7 +85,7 @@ const styles = StyleSheet.create({
   bottomTextContainer: {
     maxWidth: "80%",
     textAlign: "center",
-    fontSize: 20,
+    fontSize: Dimensions.get("screen").height > 500 ? 17 : 20,
   },
 });
 
