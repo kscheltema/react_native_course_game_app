@@ -7,6 +7,7 @@ import {
   Keyboard,
   Button,
   Alert,
+  Dimensions,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Colors from "../constants/Colors";
@@ -114,8 +115,10 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   inputCard: {
-    width: 300,
-    maxWidth: "70%",
+    height: Dimensions.get("screen").height > 500 ? 150 : "40%",
+    width: "80%",
+    minWidth: 300,
+    maxWidth: "95%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -132,8 +135,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   buttonSize: {
-    width: "40%",
+    width: Dimensions.get("window").width / 3,
     paddingTop: 17,
+    marginHorizontal: 5,
   },
   mainButtonContainer: {
     paddingLeft: 20,
@@ -144,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   summaryCard: {
-    margin: 20,
+    margin: Dimensions.get("screen").height > 500 ? 5 : 20,
     width: "80%",
     alignItems: "center",
   },

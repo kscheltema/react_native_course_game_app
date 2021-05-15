@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 
 const Card = (props) => {
   return (
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     elevation: 10,
     padding: 10,
-    borderRadius: 10,
+    borderRadius: Dimensions.get("screen").height > 500 ? 5 : 10,
   },
 });
 
