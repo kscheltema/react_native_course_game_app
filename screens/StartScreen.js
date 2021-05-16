@@ -125,9 +125,10 @@ const styles = StyleSheet.create({
   },
   inputCard: {
     minHeight: Dimensions.get("screen").height < 400 ? 120 : "40%",
-    maxHeight: "40%",
+    maxHeight: "60%",
     width: "80%",
     minWidth: 300,
+    paddingVertical: Dimensions.get("screen").height > 600 ? 30 : 1,
     maxWidth: "95%",
     alignItems: "center",
     justifyContent: "center",

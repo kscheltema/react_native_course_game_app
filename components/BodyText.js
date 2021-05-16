@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 
 const BodyText = (props) => {
   return (
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "open-sans-bold",
     fontSize: 20,
+    padding: Dimensions.get("screen").height > 600 ? 15 : 0,
   },
 });
 
