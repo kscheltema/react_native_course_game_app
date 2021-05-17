@@ -2,24 +2,35 @@ import React from "react";
 import {
   View,
   TouchableOpacity,
+  TouchableNativeFeedback,
   Text,
   StyleSheet,
+  Platform,
   Dimensions,
 } from "react-native";
 import Colors from "../constants/Colors";
 
 const MainButton = (props) => {
+  let ButtonComponent = TouchableOpacity;
+  if (Platform.OS === "android" && Platform.Version >= 21) {
+    ButtonComponent = TouchableNativeFeedback;
+  }
+
   const screenWidth = Dimensions.get("window").width;
   return (
-    <TouchableOpacity activeOpacity={0.6} onPress={props.onPress}>
-      <View style={screenWidth > 400 ? styles.button : styles.buttonSmall}>
-        <Text
-          style={screenWidth > 400 ? styles.buttonText : styles.buttonTextSmall}
-        >
-          {props.children}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.buttonContainer}>
+      <ButtonComponent activeOpacity={0.6} onPress={props.onPress}>
+        <View style={screenWidth > 400 ? styles.button : styles.buttonSmall}>
+          <Text
+            style={
+              screenWidth > 400 ? styles.buttonText : styles.buttonTextSmall
+            }
+          >
+            {props.children}
+          </Text>
+        </View>
+      </ButtonComponent>
+    </View>
   );
 };
 
@@ -30,6 +41,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 25,
     marginTop: 10,
+  },
+  buttonContainer: {
+    overflow: "hidden",
   },
   buttonSmall: {
     backgroundColor: Colors.primary,

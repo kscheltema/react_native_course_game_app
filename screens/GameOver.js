@@ -15,36 +15,41 @@ import MainButton from "../components/MainButton";
 
 const GameOver = (props) => {
   return (
-    // <ScrollView contentContainerStyle={styles.scrollProps}>
-    <View style={styles.screen}>
-      <BodyText>The Game is Over!</BodyText>
-      <Card style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          fadeDuration={300}
-          source={require("../assets/final.png")}
-          // source={{uri: "complete_url"}} //web // width & height prop is required due to unknown properties from web
-          resizeMode="cover"
-        />
-      </Card>
-
-      <Card style={styles.resultsContainer}>
-        <View style={styles.button}>
-          <MainButton onPress={props.onRestart}>
-            <Icon name="replay" size={20} color="#fff" />
-            <Text style={styles.buttonText}> Replay</Text>
-          </MainButton>
-        </View>
-        <Text style={styles.bottomTextContainer}>
-          Your phone needed -
-          <Text style={styles.number}>{props.roundsNum}</Text>
-          <Text>- rounds to guess the number - </Text>
-          <Text style={styles.number}>{props.userNum}</Text>
-          <Text>-</Text>
-        </Text>
-      </Card>
-    </View>
-    // </ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollProps}>
+      <View style={styles.screen}>
+        <BodyText>The Game is Over!</BodyText>
+        <Card style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            fadeDuration={300}
+            source={require("../assets/final.png")}
+            // source={{uri: "complete_url"}} //web // width & height prop is required due to unknown properties from web
+            resizeMode="cover"
+          />
+        </Card>
+        <Card
+          style={
+            Dimensions.get("screen").height < 600
+              ? styles.resultsContainer
+              : null
+          }
+        >
+          <View style={styles.button}>
+            <MainButton onPress={props.onRestart}>
+              <Icon name="replay" size={20} color="#fff" />
+              <Text style={styles.buttonText}> Replay</Text>
+            </MainButton>
+          </View>
+          <Text style={styles.bottomTextContainer}>
+            Your phone needed -
+            <Text style={styles.number}>{props.roundsNum}</Text>
+            <Text>- rounds to guess the number - </Text>
+            <Text style={styles.number}>{props.userNum}</Text>
+            <Text>-</Text>
+          </Text>
+        </Card>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -55,10 +60,10 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get("screen").height > 500 ? 20 : 0,
   },
   scrollProps: {
-    marginHorizontal: 20,
+    marginHorizontal: Dimensions.get("screen").height < 600 ? 20 : 0,
   },
   resultsContainer: {
-    height: Dimensions.get("screen").height > 500 ? 120 : 50,
+    height: 120,
     justifyContent: "center",
   },
   number: {

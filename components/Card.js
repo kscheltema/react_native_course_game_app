@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     backgroundColor: "#fff",
     elevation: 10,
+    marginHorizontal: Dimensions.get("screen").height < 600 ? 1 : 20,
     marginVertical: Dimensions.get("screen").height < 500 ? 30 : 1,
     padding: Dimensions.get("screen").height < 500 ? 10 : 5,
     borderRadius: Dimensions.get("screen").height > 500 ? 5 : 10,
