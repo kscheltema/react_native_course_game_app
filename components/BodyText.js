@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "open-sans-bold",
     fontSize: 20,
-    padding: Dimensions.get("screen").height > 600 ? 15 : 0,
+    padding: Dimensions.get("screen").height > 600 ? 0 : 1,
   },
 });
 

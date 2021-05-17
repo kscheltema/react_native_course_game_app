@@ -15,6 +15,7 @@ import MainButton from "../components/MainButton";
 
 const GameOver = (props) => {
   return (
+    // <ScrollView contentContainerStyle={styles.scrollProps}>
     <View style={styles.screen}>
       <BodyText>The Game is Over!</BodyText>
       <Card style={styles.imageContainer}>
@@ -43,6 +44,7 @@ const GameOver = (props) => {
         </Text>
       </Card>
     </View>
+    // </ScrollView>
   );
 };
 
@@ -50,17 +52,19 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: "center",
-    marginTop: 20,
+    marginTop: Dimensions.get("screen").height > 500 ? 20 : 0,
+  },
+  scrollProps: {
+    marginHorizontal: 20,
   },
   resultsContainer: {
-    height: Dimensions.get("window").height / 3.5,
+    height: Dimensions.get("screen").height > 500 ? 120 : 50,
     justifyContent: "center",
   },
   number: {
-    fontSize: 16,
+    fontSize: Dimensions.get("screen").height < 600 ? 16 : 22,
     textAlign: "center",
     color: Colors.accent,
-    fontSize: 20,
     fontFamily: "open-sans-bold",
   },
   button: {
@@ -72,10 +76,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "75%",
-    height: "50%",
+    height: Dimensions.get("screen").height > 500 ? "50%" : "40%",
     overflow: "hidden",
     borderRadius: 80,
-    margin: 10,
+    margin: Dimensions.get("screen").height > 500 ? 0 : 10,
   },
   image: {
     width: "100%",
@@ -83,9 +87,9 @@ const styles = StyleSheet.create({
     borderRadius: 80,
   },
   bottomTextContainer: {
-    maxWidth: "80%",
+    height: Dimensions.get("screen").height < 600 ? 150 : "80%",
     textAlign: "center",
-    fontSize: Dimensions.get("screen").height > 500 ? 17 : 20,
+    fontSize: Dimensions.get("screen").height < 600 ? 14 : 20,
   },
 });
 

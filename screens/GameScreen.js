@@ -35,13 +35,29 @@ const renderListItem = (listLenght, itemData) => (
 const GameScreen = (props) => {
   const initialGuess = generateRandomBetween(1, 100, props.userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
-
+  const [avialbleDeviceWidth, setAvialbleDeviceWidth] = useState(
+    Dimensions.get("window").width
+  );
+  const [avialbleDeviceHeight, setAvialbleDeviceHeight] = useState(
+    Dimensions.get("window").height
+  );
   const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
 
   const { userChoice, onGameOver } = props;
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setAvialbleDeviceWidth(Dimensions.get("window").width);
+      setAvialbleDeviceHeight(Dimensions.get("window").height);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   useEffect(() => {
     if (currentGuess === props.userChoice) {
@@ -75,6 +91,39 @@ const GameScreen = (props) => {
       ...currentPastGuesses,
     ]);
   };
+
+  let listContainerStyle = styles.listContainer;
+
+  if (avialbleDeviceWidth < 400) {
+    listContainerStyle = styles.listContainerBig;
+  }
+
+  avialbleDeviceHeight;
+
+  if (avialbleDeviceHeight < 600) {
+    return (
+      <View style={styles.screen}>
+        <BodyText>Opponents Guess</BodyText>
+        <View style={styles.controlContainer}>
+          <MainButton onPress={NextGuessHandler.bind(this, "lower")}>
+            <Icon name="remove" size={24} color="#fff" />
+          </MainButton>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <MainButton onPress={NextGuessHandler.bind(this, "higher")}>
+            <Icon name="add" size={24} color="#fff" />
+          </MainButton>
+        </View>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={pastGuesses}
+            renderItem={renderListItem.bind(this, pastGuesses.length)}
+            keyExtractor={(item) => item}
+            contentContainerStyle={styles.listItem}
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
@@ -117,6 +166,12 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get("window").height > 500 ? 10 : 20,
     width: 350,
     maxWidth: "55%",
+  },
+  controlContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "80%",
+    alignItems: "center",
   },
   listContainer: {
     flexDirection: "row",
